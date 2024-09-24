@@ -793,7 +793,7 @@ static ssize_t vendor_update(struct device *dev,
 			     struct device_attribute *attr,
 			     const char *buf, size_t count)
 {
-	int rc;
+	int rc = 0;
 	return rc ? rc : count;
 }
 
@@ -1117,9 +1117,7 @@ static struct platform_driver fpc1020_driver = {
 
 static int __init fpc1020_init(void)
 {
-	int rc;
-
-	rc = platform_driver_register(&fpc1020_driver);
+	int rc = platform_driver_register(&fpc1020_driver);
 	if (!rc)
 		pr_info("%s OK\n", __func__);
 	else
