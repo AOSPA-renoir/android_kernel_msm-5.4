@@ -1076,7 +1076,8 @@ void sde_connector_helper_bridge_enable(struct drm_connector *connector)
 					MSM_ENC_TX_COMPLETE);
 	}
 
-	display->panel->bl_config.allow_bl_update = true;
+	if (c_conn->connector_type == DRM_MODE_CONNECTOR_DSI)
+		display->panel->bl_config.allow_bl_update = true;
 
 	if (!sde_in_trusted_vm(sde_kms) && c_conn->bl_device) {
 		c_conn->bl_device->props.power = FB_BLANK_UNBLANK;
